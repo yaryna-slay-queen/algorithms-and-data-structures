@@ -50,8 +50,7 @@ function insertionSort(arr, isAscending) {
     for (let i = 1; i < n; i++) {
         const key = result[i];
         let j = i - 1;
-
-        // Порівняння залежно від порядку сортування
+      
         while (j >= 0 && (isAscending ? result[j] > key : result[j] < key)) {
             result[j + 1] = result[j];
             j--;
