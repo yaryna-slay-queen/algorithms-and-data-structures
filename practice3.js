@@ -23,9 +23,13 @@ function bubbleSort(arr, isAscending) {
 
     for (let i = 0; i < n - 1; i++) {
         for (let j = 0; j < n - 1 - i; j++) {
-            const shouldSwap = isAscending 
-                ? result[j] > result[j + 1] 
-                : result[j] < result[j + 1];
+            let shouldSwap;
+
+            if (isAscending) {
+                shouldSwap = result[j] > result[j + 1];
+            } else {
+                shouldSwap = result[j] < result[j + 1];
+            }
 
             if (shouldSwap) {
                 const temp = result[j];
