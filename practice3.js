@@ -6,15 +6,22 @@ function randomArray(length, min, max){
   return arr;
 }
 
+function isSorted(arr, isAscending) {
+  for (let i = 0; i < arr.length - 1; i++) {
+    if (isAscending) {
+      if (arr[i] > arr[i + 1]) return false;
+    } else {
+      if (arr[i] < arr[i + 1]) return false;
+    }
+  }
+  return true;
+}
+
 function printArray(arr) {
   const parts = arr.map((value, cell) => `\n [cell: ${cell},value: ${value}]`);
   const text = `{${parts.join(",")}}`;
   return text;
 }
-
-console.log(`\n ---------Original array:---------`)
-const array = randomArray(10, -20, 20);
-console.log(printArray(array));
 
 // Bubble
 function bubbleSort(arr, isAscending) {
@@ -23,27 +30,23 @@ function bubbleSort(arr, isAscending) {
 
     for (let i = 0; i < n - 1; i++) {
         for (let j = 0; j < n - 1 - i; j++) {
-            let shouldSwap;
+            let swap;
 
             if (isAscending) {
-                shouldSwap = result[j] > result[j + 1];
+                swap = result[j] > result[j + 1];
             } else {
-                shouldSwap = result[j] < result[j + 1];
+                swap = result[j] < result[j + 1];
             }
 
-            if (shouldSwap) {
+            if (swap) {
                 const temp = result[j];
                 result[j] = result[j + 1];
                 result[j + 1] = temp;
             }
         }
     }
-    return result;
+    return isSorted(result, isAscending);
 }
-
-console.log(`\n ---------Bubble sort. true and false:---------`);
-console.log(printArray(bubbleSort(array, true)));
-console.log(printArray(bubbleSort(array, false)));
 
 // Insertion
 
@@ -55,18 +58,25 @@ function insertionSort(arr, isAscending) {
         const key = result[i];
         let j = i - 1;
       
-        while (j >= 0 && (isAscending ? result[j] > key : result[j] < key)) {
+        while (j >= 0) {
+            let shift;
+            if (isAscending) {
+                shift = result[j] > key;
+            } else {
+                shift = result[j] < key;
+            }
+            if (shift === false) {
+                break;
+            }
             result[j + 1] = result[j];
-            j--;
+            j = j - 1;
         }
+
         result[j + 1] = key;
     }
-    return result;
+    return isSorted(result, isAscending);
 }
 
-console.log(`\n ---------Insertion sort. true and false:---------`);
-console.log(printArray(insertionSort(array, true)));
-console.log(printArray(insertionSort(array, false)));
 
 // Selection
 
@@ -78,14 +88,16 @@ function selectionSort(arr, isAscending) {
         let targetIndex = i;
 
         for (let j = i + 1; j < n; j++) {
-            const isBetterTarget = isAscending 
-                ? result[j] < result[targetIndex] 
-                : result[j] > result[targetIndex];
-
-            if (isBetterTarget) {
+            let target;
+            if (isAscending) {
+                target = result[j] < result[targetIndex];
+            } else {
+                target = result[j] > result[targetIndex];
+            }
+            if (target === true) {
                 targetIndex = j;
             }
-        }
+}
 
         if (targetIndex !== i) {
             const temp = result[i];
@@ -93,9 +105,19 @@ function selectionSort(arr, isAscending) {
             result[targetIndex] = temp;
         }
     }
-    return result;
+    return isSorted(result, isAscending);
 }
 
+const array = randomArray(10000, -20, 20);
+
+console.log(`\n ---------Bubble sort. true and false:---------`);
+console.log(isSorted(bubbleSort(array, true), true));
+console.log(isSorted(bubbleSort(array, false), false));
+
+console.log(`\n ---------Insertion sort. true and false:---------`);
+console.log(isSorted(insertionSort(array, true), true));
+console.log(isSorted(insertionSort(array, false), false));
+
 console.log(`\n ---------Selection sort. true and false:---------`);
-console.log(printArray(selectionSort(array, true)));
-console.log(printArray(selectionSort(array, false)));
+console.log(isSorted(selectionSort(array, true), true));
+console.log(isSorted(selectionSort(array, false), false));
