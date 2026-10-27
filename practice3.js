@@ -17,12 +17,6 @@ function isSorted(arr, isAscending) {
   return true;
 }
 
-function printArray(arr) {
-  const parts = arr.map((value, cell) => `\n [cell: ${cell},value: ${value}]`);
-  const text = `{${parts.join(",")}}`;
-  return text;
-}
-
 // Bubble
 function bubbleSort(arr, isAscending) {
     const result = [...arr];
@@ -45,7 +39,7 @@ function bubbleSort(arr, isAscending) {
             }
         }
     }
-    return isSorted(result, isAscending);
+    return result;
 }
 
 // Insertion
@@ -74,7 +68,7 @@ function insertionSort(arr, isAscending) {
 
         result[j + 1] = key;
     }
-    return isSorted(result, isAscending);
+    return result;
 }
 
 
@@ -105,14 +99,14 @@ function selectionSort(arr, isAscending) {
             result[targetIndex] = temp;
         }
     }
-    return isSorted(result, isAscending);
+    return result;
 }
 
-const array = randomArray(10000, -20, 20);
+const array = randomArray(1000, -20, 20);
 
 console.log(`\n ---------Bubble sort. true and false:---------`);
-console.log(isSorted(bubbleSort(array, true), true));
-console.log(isSorted(bubbleSort(array, false), false));
+console.log(isSorted(bubbleSort(array, true),true));
+console.log(isSorted(bubbleSort(array, false),false));
 
 console.log(`\n ---------Insertion sort. true and false:---------`);
 console.log(isSorted(insertionSort(array, true), true));
