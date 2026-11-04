@@ -42,16 +42,19 @@ function quickSort(arr, isAscending = true) {
 
 const arr = randomArray(10, -100, 100);
 
-console.log(`початковий масив`);
+console.log(`Original array:`);
 console.log(isSorted(arr, false));
 
 const sortedT = quickSort(arr, true);
 
-console.log('True');
+console.log("\nQuick sort. True:");
+console.time('True');
 console.log(isSorted(sortedT, true));
-console.log(sortedT);
+console.timeEnd('True');
 
 const sortedF = quickSort(arr, false);
 
-console.log('False');
+console.log("\nQuick sort. False:");
+console.time('False');
 console.log(isSorted(sortedF, false));
+console.timeEnd('False');
