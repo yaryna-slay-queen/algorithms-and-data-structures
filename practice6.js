@@ -65,12 +65,12 @@ stackArray.push(10);
 stackArray.push(20);
 stackArray.push(30);
 
-console.log("Стек після додавання 10, 20, 30:", stackArray.toString());
+console.log("Додавання елементів до стеку:", stackArray.toString());
 console.log("Вершина стеку (peek):", stackArray.peek());
-console.log("Кількість елементів (size/count):", stackArray.size());
+console.log("Кількість елементів (size):", stackArray.size());
 
 console.log("Видалений елемент (pop):", stackArray.pop());
-console.log("Стек після pop():", stackArray.toString());
+console.log(stackArray.toString());
 
 stackArray.clear();
-console.log("Стек після clear():", stackArray.toString());
+console.log("Видалення усіх елементів стеку:", stackArray.toString());
