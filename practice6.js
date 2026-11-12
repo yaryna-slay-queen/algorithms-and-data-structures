@@ -58,7 +58,6 @@ class ArrayStack {
     return result.join(" -> ");
   }
 }
-console.log("--- Тест ArrayStack ---");
 const stackArray = new ArrayStack();
 
 stackArray.push(10);
