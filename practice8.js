@@ -6,7 +6,6 @@ class Node {
   }
 }
 
-// Клас Бінарного дерева
 class BinarySearchTree {
   constructor() {
     this.root = null;
